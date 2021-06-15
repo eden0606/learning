@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link href="static/style.css" type="text/css" rel="stylesheet" />
+
+        <!-- jquery used to set up json post -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js" /></script>
+        
+        
+    </head>
+    <body>
+        hello world!
+
+        <!-- when submit is hit, browser takes the values typed into the fields and uses name as its 
+        identifier and sets up the query string name=value based on what you type in -->
+        <form method="POST" action="/person">
+            first name: <input type="text" id="firstname" name="firstname" />
+            <br />
+            last name: <input type="text" id="lastname" name="lastname" />
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+
+        <!-- this data is sent, converted to a json string, and we'll create a http request that's a post
+        to the specified url, node then gets this http request, puts it through the middleware which
+        will pull out the body and the relevant properties -->
+        <script>
+            $.ajax({
+                type: "POST",
+                url: "/personjson",
+                data: JSON.stringify({ firstname: 'eden', lastname: 'chou' }),
+                dataType: 'json',
+                contentType: 'application/json'
+            })
+        </script>
+    </body>
+</html>
