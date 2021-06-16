@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clean-css": "^5.1.2",
+    "constantinople": "^4.0.1",
     "express": "^4.17.1",
-    "express-generator": "^4.16.1"
+    "express-generator": "^4.16.1",
+    "minimist": "^1.2.5",
+    "pug": "^3.0.2"
   }
 }
