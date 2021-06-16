@@ -1,4 +1,5 @@
 const express = require('express');
+const mysql = require('mysql');
 
 // moved to html-controller bc it is only used there
 //const bodyParser = require('body-parser');
@@ -30,6 +31,24 @@ app.use('/static', express.static(__dirname + '/public'));
 // next means run the next middleware
 app.use('/', function(req, res, next) {
     console.log('request url: ' + req.url);
+
+    // creating a connection to sql database
+    const con = mysql.createConnection({
+        host: "localhost",
+        user: "test",
+        password: "test",
+        database: "addressbook"
+    });
+
+    // send desired query here
+    // function is callback function since .query is async coding
+    // rows = what's coming back from the db
+    con.query('SELECT people.id, firstname, lastname, address FROM people',
+        function(err, rows) {
+            if(err) throw err;
+            console.log(rows);
+        })
+
     next();
 });
 
